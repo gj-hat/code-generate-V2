@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: codegen
+  profiles:
+    active: mysql
+  security:
+    user:
+      name: admin
+      password: $2a$10$AVmkdhLby0FsIdnvQFKIGelHsB3OrMQ4jMs25uHVIm0TXUu1yKE5G
+
+
+
+server:
+  port: 8081
