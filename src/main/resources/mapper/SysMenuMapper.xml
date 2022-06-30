@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiaguo.codegenerategraduation.web.mapper.SysMenuMapper">
+
+    <select id="pageQueryMenu" parameterType="com.jiaguo.codegenerategraduation.web.controller.vo.SysMenuVo"
+            resultType="com.jiaguo.codegenerategraduation.web.controller.vo.SysMenuVo">
+        select u.id, u.menu_name, u.menu_url, u.menu_type, u.menu_parent_id ,u.create_time, u.create_by, u.update_time,
+        u.update_by
+        from sys_menu u
+        <where>
+            <if test="vo != null">
+                <if test="vo.menuName != null">
+                    and u.menu_name = #{vo.menuName}
+                </if>
+                <if test="vo.menuUrl != null">
+                    and u.menu_url = #{vo.menuUrl}
+                </if>
+                <if test="vo.menuType != null">
+                    and u.menu_type = #{vo.menuType}
+                </if>
+                <if test="vo.menuParentId != null">
+                    and u.menu_parent_id = #{vo.menuParentId}
+                </if>
+                <if test="vo.createTime != null">
+                    and u.create_time = #{vo.createTime}
+                </if>
+                <if test="vo.createBy != null">
+                    and u.create_by = #{vo.createBy}
+                </if>
+                <if test="vo.updateTime != null">
+                    and u.update_time = #{vo.updateTime}
+                </if>
+                <if test="vo.updateBy != null">
+                    and u.update_by = #{vo.updateBy}
+                </if>
+                u.del_flag = 0
+            </if>
+        </where>
+        ORDER BY update_time DESC
+    </select>
+
+
+    <select id="selectByLoginUser" parameterType="java.util.List"
+            resultType="com.jiaguo.codegenerategraduation.web.controller.vo.SysMenuVo">
+        select u.id, u.menu_name, u.menu_url, u.menu_type, u.menu_parent_id ,u.create_time, u.create_by, u.update_time,
+        u.update_by
+        from sys_menu u
+        <where>
+            id in
+            <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+            and
+            u.del_flag = 0
+
+        </where>
+        ORDER BY update_time DESC
+    </select>
+
+
+
+    <select id="selectListByMenuId" parameterType="java.lang.Integer"
+            resultType="com.jiaguo.codegenerategraduation.web.controller.vo.SysMenuVo">
+        select u.id, u.menu_name, u.menu_url, u.menu_type, u.menu_parent_id
+        from sys_menu u
+        <where>
+            id = #{id}
+            and
+            u.del_flag = 0
+        </where>
+        ORDER BY update_time DESC
+    </select>
+
+
+</mapper>

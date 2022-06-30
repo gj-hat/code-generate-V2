@@ -4,7 +4,7 @@ import com.jiaguo.codegenerategraduation.common.http.Result;
 import com.jiaguo.codegenerategraduation.config.security.jwtManager.JwtManager;
 import com.jiaguo.codegenerategraduation.config.security.jwtManager.JwtUser;
 import com.jiaguo.codegenerategraduation.util.RedisCache;
-import com.jiaguo.codegenerategraduation.web.dao.SysUser;
+import com.jiaguo.codegenerategraduation.web.po.SysUser;
 import com.jiaguo.codegenerategraduation.web.manager.RequestHolder;
 import com.jiaguo.codegenerategraduation.web.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;

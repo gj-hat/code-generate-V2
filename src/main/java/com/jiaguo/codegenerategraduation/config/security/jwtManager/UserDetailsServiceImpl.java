@@ -1,7 +1,7 @@
 package com.jiaguo.codegenerategraduation.config.security.jwtManager;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.jiaguo.codegenerategraduation.web.dao.SysUser;
+import com.jiaguo.codegenerategraduation.web.po.SysUser;
 import com.jiaguo.codegenerategraduation.web.mapper.SysUserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

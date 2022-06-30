@@ -5,9 +5,11 @@ package com.jiaguo.codegenerategraduation.web.controller;
 import com.jiaguo.codegenerategraduation.common.exception.RRException;
 import com.jiaguo.codegenerategraduation.common.http.ReqParams;
 import com.jiaguo.codegenerategraduation.common.http.Result;
-import com.jiaguo.codegenerategraduation.web.controller.dto.SysUserDto;
-import com.jiaguo.codegenerategraduation.web.dao.SysUser;
+import com.jiaguo.codegenerategraduation.web.controller.vo.SysUserVo;
+import com.jiaguo.codegenerategraduation.web.po.SysUser;
 import com.jiaguo.codegenerategraduation.web.service.SysUserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * (SysUser)表控制层
@@ -25,10 +28,12 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/sysUser")
+@Api(value = "系统用户管理", tags = "系统用户管理")
 public class SysUserController {
 
     @Autowired
     private SysUserService sysUserService;
+
 
     /**
      * 分页查询所有数据
@@ -36,27 +41,30 @@ public class SysUserController {
      * @param params 分页对象
      * @return 所有数据
      */
+
     @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
-    public Result selectAll(ReqParams<SysUser> params) {
-        return Result.success(this.sysUserService.pageQuery(params));
+    @ApiOperation(value = "分页查询所有数据", notes = "分页查询所有数据")
+    public Result selectAll(ReqParams<SysUserVo> params) {
+        return this.sysUserService.pageQuery(params);
     }
 
     /**
      * 新增数据
      *
-     * @param sysUserDto 实体对象
+     * @param sysUserVo 实体对象
      * @return 新增结果
      */
     @RequestMapping(value = "/add", method = {RequestMethod.POST})
-    public Result insert(@RequestBody @Valid SysUserDto sysUserDto, BindingResult result) {
-
+    @ApiOperation(value = "新增数据", notes = "新增数据  必须传入 roleId 即用户角色")
+    public Result insert(@RequestBody @Valid SysUserVo sysUserVo, BindingResult result) {
         if (result.hasErrors()) {
-            String msg = result.getFieldError().getDefaultMessage();
+            String msg = Objects.requireNonNull(result.getFieldError()).getDefaultMessage();
             throw new RRException(msg);
         }
+        if (sysUserVo.getRoleId() == -1) throw new RRException("请传入用户角色");
 
-        sysUserDto.setPassword(new BCryptPasswordEncoder().encode(sysUserDto.getPassword()));
-        return sysUserService.saveSysUser(sysUserDto);
+        sysUserVo.setPassword(new BCryptPasswordEncoder().encode(sysUserVo.getPassword()));
+        return sysUserService.saveSysUser(sysUserVo);
     }
 
 
@@ -66,36 +74,53 @@ public class SysUserController {
      * @param id 主键
      * @return 单条数据
      */
-    @RequestMapping(value = "{id}", method = {RequestMethod.GET, RequestMethod.POST})
-    public Result selectOne(@PathVariable Serializable id) {
-        return Result.success(this.sysUserService.getById(id));
+    @ApiOperation(value = "通过主键查询单条数据", notes = "通过主键查询单条数据")
+    @RequestMapping(value = "/id", method = {RequestMethod.GET, RequestMethod.POST})
+    @Deprecated
+    public Result selectOne(RequestBody id) {
+        //  JiaGuo 2022/6/29:  这个业务暂时不用 已打废弃标记
+        return Result.success(this.sysUserService.getById((Serializable) id));
     }
 
 
     /**
      * 修改数据
      *
-     * @param sysUserDto 实体对象
+     * @param sysUserVo 实体对象
      * @return 修改结果
      */
+    @ApiOperation(value = "修改数据", notes = "修改数据")
     @RequestMapping(value = "/update", method = {RequestMethod.POST})
-    public Result update(@RequestBody @Valid SysUserDto sysUserDto, BindingResult result) {
+    public Result update(@RequestBody @Valid SysUserVo sysUserVo, BindingResult result) {
         if (result.hasErrors()) {
-            String msg = result.getFieldError().getDefaultMessage();
+            String msg = Objects.requireNonNull(result.getFieldError()).getDefaultMessage();
             throw new RRException(msg);
         }
-        return this.sysUserService.updateUser(sysUserDto);
+        return this.sysUserService.updateUser(sysUserVo);
     }
 
     /**
      * 删除数据
      *
-     * @param idList 主键结合
+     * @param idList 主键集合
      * @return 删除结果
      */
+    @ApiOperation(value = "删除数据", notes = "删除数据 前端使用String传输")
     @RequestMapping(value = "/del", method = {RequestMethod.POST})
-    public Result delete(@RequestParam("idList") List<Long> idList) {
-        return Result.success(this.sysUserService.removeByIds(idList));
+    public Result delete(@RequestBody List<Long> idList) {
+        return this.sysUserService.removeUserByIds(idList);
+    }
+
+
+    /**
+     * 查询当前用户所具有的权限
+     * @return
+     */
+    @RequestMapping(value = "/listByDefault", method = {RequestMethod.GET, RequestMethod.POST})
+    @ApiOperation(value = "查询当前登录用户资源", notes = "查询当前登录用户资源 ")
+    public Result selectByLoginUser() {
+
+        return sysUserService.selectByLoginUser();
     }
 
 

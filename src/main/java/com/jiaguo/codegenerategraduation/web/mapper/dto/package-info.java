@@ -1,4 +1,4 @@
-package com.jiaguo.codegenerategraduation.web.mapper.entity;/**
+package com.jiaguo.codegenerategraduation.web.mapper.dto;/**
  * @author ：JiaGuo
  * @emil ：1520047927@qq.com
  * @date ：Created in 2022/6/29 00:16

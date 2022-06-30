@@ -25,7 +25,7 @@ public class SecurityTest {
 
 @Test
 public void TestBCryptPasswordEncoder() {
-    BCryptPasswordEncoder passwordEncoder = ;
+    BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     String encode = passwordEncoder.encode("321321");
     System.out.println("encode = " + encode);
 

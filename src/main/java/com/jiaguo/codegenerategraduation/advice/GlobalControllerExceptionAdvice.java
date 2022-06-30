@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.security.access.AccessDeniedException;
@@ -17,6 +18,7 @@ import org.springframework.transaction.CannotCreateTransactionException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -62,6 +64,23 @@ public class GlobalControllerExceptionAdvice implements ResponseBodyAdvice<Objec
         log.error("handleException : ", e);
         return Result.fail("系统内部发生异常!");
     }
+
+
+    @ResponseBody
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public Result<String> MissingServletRequestParameterException(HttpServletRequest request, Exception e) {
+        log.error("handleException : ", e);
+        return Result.fail("请求参数有误!");
+    }
+
+
+    @ResponseBody
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public Result<String> HttpMessageNotReadableException(HttpServletRequest request, Exception e) {
+        log.error("handleException : ", e);
+        return Result.fail("请求参数类型不匹配!");
+    }
+
 
     /**
      * 数据授权签名异常
@@ -204,6 +223,11 @@ public class GlobalControllerExceptionAdvice implements ResponseBodyAdvice<Objec
     }
 
 
+
+
+
+
+
     /**
      * 自定义业务处理异常
      * @param request
@@ -228,7 +252,7 @@ public class GlobalControllerExceptionAdvice implements ResponseBodyAdvice<Objec
     @ExceptionHandler(DatabaseException.class)
     @ResponseBody
     public Result handleDatabaseException(HttpServletRequest request, DatabaseException ex) {
-        log.error("网关服务器异常", ex);
+        log.error("数据库异常", ex);
         return Result.fail(ex.getCode(), ex.getMessage());
     }
 

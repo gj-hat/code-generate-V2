@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiaguo.codegenerategraduation.web.mapper.SysRoleMapper">
+
+    <select id="pageQueryMenu" parameterType="com.jiaguo.codegenerategraduation.web.controller.vo.SysRoleVo"
+            resultType="com.jiaguo.codegenerategraduation.web.controller.vo.SysRoleVo">
+        select u.role_id, u.role_name ,u.create_time, u.create_by, u.update_time, u.update_by
+        from sys_role u
+        <where>
+            <if test="vo != null">
+                <if test="vo.roleId != null">
+                    and u.role_id = #{vo.roleId}
+                </if>
+                <if test="vo.roleName != null">
+                    and u.role_name = #{vo.roleName}
+                </if>
+                <if test="vo.createTime != null">
+                    and u.create_time = #{vo.createTime}
+                </if>
+                <if test="vo.createBy != null">
+                    and u.create_by = #{vo.createBy}
+                </if>
+                <if test="vo.updateTime != null">
+                    and u.update_time = #{vo.updateTime}
+                </if>
+                <if test="vo.updateBy != null">
+                    and u.update_by = #{vo.updateBy}
+                </if>
+            </if>
+            u.del_flag = 0
+        </where>
+        ORDER BY update_time DESC
+    </select>
+
+
+</mapper>

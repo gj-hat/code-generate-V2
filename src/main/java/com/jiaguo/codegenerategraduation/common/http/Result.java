@@ -1,6 +1,8 @@
 package com.jiaguo.codegenerategraduation.common.http;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +15,7 @@ import java.util.Map;
  * @modified By：
  * @version: 1.0
  */
+@ApiModel(value = "统一返回相应", description = "统一返回相应")
 public class Result<T> {
 
     /**
@@ -28,8 +31,11 @@ public class Result<T> {
     public static final String DEFAULT_FAIL_MSG = "fail";
 
 
+    @ApiModelProperty(value = "返回码", name = "code", example = "200")
     private int code;
+    @ApiModelProperty(value = "返回消息", name = "msg", example = "success")
     private String msg;
+    @ApiModelProperty(value = "返回数据", name = "data", example = "")
     private T data;
 
     public Result() {

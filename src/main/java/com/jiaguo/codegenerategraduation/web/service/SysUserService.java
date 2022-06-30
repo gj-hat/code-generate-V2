@@ -1,11 +1,12 @@
 package com.jiaguo.codegenerategraduation.web.service;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.jiaguo.codegenerategraduation.common.http.ReqParams;
 import com.jiaguo.codegenerategraduation.common.http.Result;
-import com.jiaguo.codegenerategraduation.web.controller.dto.SysUserDto;
-import com.jiaguo.codegenerategraduation.web.dao.SysUser;
+import com.jiaguo.codegenerategraduation.web.controller.vo.SysUserVo;
+import com.jiaguo.codegenerategraduation.web.po.SysUser;
+
+import java.util.List;
 
 /**
  * (SysUser)表服务接口
@@ -16,11 +17,15 @@ import com.jiaguo.codegenerategraduation.web.dao.SysUser;
 public interface SysUserService extends IService<SysUser> {
 
 
-    public IPage pageQuery(ReqParams<SysUser> params);
+    public Result pageQuery(ReqParams<SysUserVo> params);
 
 
-    public Result saveSysUser(SysUserDto sysUserDto);
+    public Result saveSysUser(SysUserVo sysUserVo);
 
-    Result updateUser(SysUserDto sysUserDto);
+    Result updateUser(SysUserVo sysUserVo);
+
+    Result removeUserByIds(List<Long> idList);
+
+    Result selectByLoginUser();
 }
 

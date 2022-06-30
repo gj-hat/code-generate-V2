@@ -18,8 +18,8 @@ public class DatabaseException extends RuntimeException{
 
     public DatabaseException(){}
 
-    public DatabaseException(int code) {
-        this.code = code;
+    public DatabaseException(String message) {
+        this.msg = message;
     }
 
     public DatabaseException(String message, int code) {
