@@ -2,9 +2,6 @@ package com.jiaguo.codegenerategraduation.advice;
 
 public enum RequestHandlerCode {
 
-
-
-
     /**
      * ************************************************************************************************************
      * <p>
@@ -34,7 +31,6 @@ public enum RequestHandlerCode {
 
     ACCOUNT_TENANT_DISABLED(1106, Series.ACCOUNT, "该用户已被禁用，如需处理，请联系管理员"),
 
-
     /**
      * ************************************************************************************************************
      * <p>
@@ -51,7 +47,6 @@ public enum RequestHandlerCode {
 
     PARAMETER_API_INTERFACE_CHECK_ERROR(2000, Series.PARAMS, "API接口参数校验失败"),
 
-
     /**
      * ************************************************************************************************************
      * <p>
@@ -63,7 +58,6 @@ public enum RequestHandlerCode {
     SERVICE(3000, Series.SERVICE, "业务处理"),
 
     SERVICE_EXECUTION_FAILED(3001, Series.SERVICE, "执行业务操作错误"),
-
 
     /**
      * ************************************************************************************************************
@@ -80,7 +74,6 @@ public enum RequestHandlerCode {
     DATABASE_SQL_ILLEGAL(4002, Series.DATABASE, "SQL语法错误"),
 
     DATABASE_SQL_CONNECT_ERROR(4102, Series.DATABASE, "无法获取数据库连接,数据库连接已断开"),
-
 
     /**
      * ************************************************************************************************************
@@ -112,7 +105,6 @@ public enum RequestHandlerCode {
      */
 
     DISK_FULL(9101, Series.UNKNOWN, "无可用磁盘空间"),
-
 
     UNKNOWN(9999, Series.UNKNOWN, "System internal exception."),
 
@@ -161,7 +153,6 @@ public enum RequestHandlerCode {
     public int getCode(){
         return code;
     }
-
 
     /**
      * @return
@@ -227,6 +218,5 @@ public enum RequestHandlerCode {
             return value;
         }
     }
-
 
 }

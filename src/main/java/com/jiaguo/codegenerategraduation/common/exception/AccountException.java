@@ -17,10 +17,8 @@ public class AccountException extends RuntimeException{
 
     private int code = RequestHandlerCode.ACCOUNT.getCode();
 
-
     public AccountException() {
     }
-
 
 
     public AccountException(int code) {

@@ -1,6 +1,5 @@
 package com.jiaguo.codegenerategraduation;
 
-import java.io.File;
 
 /**
  * @author ：JiaGuo
@@ -22,7 +21,7 @@ public class Constants {
     public final static String JWT_AUDIENCE = "JiaGuo";
 
 
-    public final static Long JWT_TTL = 60 * 60 *24*1000L;
+    public final static Long JWT_TTL = 60 * 60 * 24 * 1000L;
 
     public final static String JWT_KEY_ACCOUNT = "account";
     public final static String JWT_KEY_NICKNAME = "nickname";
@@ -33,10 +32,11 @@ public class Constants {
     public final static String REQUEST_HEAD = "Authorization";
 
 
-    // TODO JiaGuo 2022/7/4: 之后写在数据库中  作为全局参数
-    public final static String DRIVER_PATH_PREFIX = File.separator+"Volumes"+File.separator+"SoftWare"+File.separator+"JetBrains"+File.separator+"IDEA"+File.separator+"code-generate-graduation"+File.separator+"code-generate-graduation"+File.separator+"localFile"+File.separator+"DbDriverDriver"+File.separator;
-
-
+    /**
+     * 启动配置参数 key
+     */
+    public final static String DRIVER_PATH_PREFIX = "DRIVER_PATH_PREFIX";
+    public final static String TIMED_REFRESH = "TIMED_REFRESH";
 
 
 }

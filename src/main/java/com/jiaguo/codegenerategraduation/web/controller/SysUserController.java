@@ -5,6 +5,7 @@ package com.jiaguo.codegenerategraduation.web.controller;
 import com.jiaguo.codegenerategraduation.common.exception.RRException;
 import com.jiaguo.codegenerategraduation.common.http.ReqParams;
 import com.jiaguo.codegenerategraduation.common.http.Result;
+import com.jiaguo.codegenerategraduation.config.InitParameter;
 import com.jiaguo.codegenerategraduation.web.controller.vo.SysUserVo;
 import com.jiaguo.codegenerategraduation.web.service.SysUserService;
 import io.swagger.annotations.Api;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 /**

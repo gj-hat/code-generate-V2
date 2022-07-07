@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 数据源管理(DatabaseResources)表控制层
  *
- * @author makejava
+ * @author JiGuo
  * @since 2022-07-06 16:39:48
  */
 @RestController

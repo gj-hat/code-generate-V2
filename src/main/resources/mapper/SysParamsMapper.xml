@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiaguo.codegenerategraduation.web.mapper.SysParamsMapper">
+
+    <select id="pageQuery" parameterType="com.jiaguo.codegenerategraduation.web.controller.vo.SysParamsVo"
+            resultType="com.jiaguo.codegenerategraduation.web.controller.vo.SysParamsVo">
+        select u.id, u.key, u.value, u.remark,u.create_time, u.create_by, u.update_time,u.update_by
+        from sys_params u
+        <where>
+
+            <if test="vo != null">
+                <if test="vo.id != null">
+                    and u.id = #{vo.id}
+                </if>
+                <if test="vo.key != null">
+                    and u.key #{vo.key}
+                </if>
+                <if test="vo.value != null">
+                    and u.value #{vo.value}
+                </if>
+                <if test="vo.remark != null">
+                    and u.remark #{vo.remark}
+                </if>
+                <!--                <if test="vo.roleId != null">-->
+                <!--                    and u.role_id = #{roleId}-->
+                <!--                </if>-->
+                <if test="vo.createTime != null">
+                    and u.create_time = #{createTime}
+                </if>
+                <if test="vo.createBy != null">
+                    and u.create_by = #{createBy}
+                </if>
+                <if test="vo.updateTime != null">
+                    and u.update_time = #{updateTime}
+                </if>
+                <if test="vo.updateBy != null">
+                    and u.update_by = #{updateBy}
+                </if>
+                u.del_flag = 0
+            </if>
+        </where>
+        ORDER BY update_time DESC
+    </select>
+</mapper>

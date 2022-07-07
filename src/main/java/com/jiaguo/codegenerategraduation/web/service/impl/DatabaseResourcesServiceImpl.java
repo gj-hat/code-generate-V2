@@ -146,7 +146,6 @@ public class DatabaseResourcesServiceImpl extends ServiceImpl<DatabaseResourcesM
         databaseDriverQueryWrapper.eq("del_flag", 0);
         DatabaseDriver databaseDriver = databaseDriverMapper.selectOne(databaseDriverQueryWrapper);
         databaseResourcesVo.setDriverUrl(databaseDriver.getUrl());
-
         return ConnectDB.testConnectDB(databaseResourcesVo);
     }
 }

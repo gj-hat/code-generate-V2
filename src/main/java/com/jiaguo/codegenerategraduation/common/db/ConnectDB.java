@@ -1,11 +1,11 @@
 package com.jiaguo.codegenerategraduation.common.db;
 
 import com.jiaguo.codegenerategraduation.Constants;
+import com.jiaguo.codegenerategraduation.config.InitParameter;
 import com.jiaguo.codegenerategraduation.web.controller.vo.DatabaseResourcesVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-
+import org.springframework.beans.factory.annotation.Autowired;
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -22,12 +22,14 @@ import java.sql.DriverManager;
  * @version: 1.0
  */
 public class ConnectDB {
+
+
     private static final Logger logger = LoggerFactory.getLogger(ConnectDB.class);
 
 
-    public static Boolean testConnectDB(DatabaseResourcesVo databaseResourcesVo) {
+    public static   Boolean testConnectDB(DatabaseResourcesVo databaseResourcesVo) {
         // 加载驱动
-        String driverUrl = Constants.DRIVER_PATH_PREFIX + databaseResourcesVo.getDriverUrl();
+        String driverUrl = InitParameter.paramsMap.get(Constants.TIMED_REFRESH)+ databaseResourcesVo.getDriverUrl();
         // 数据库jdbc地址
         String url = "jdbc:"
                 + databaseResourcesVo.getDatabaseType()
