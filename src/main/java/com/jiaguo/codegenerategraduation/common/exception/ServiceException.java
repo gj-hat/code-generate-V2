@@ -13,9 +13,9 @@ import com.jiaguo.codegenerategraduation.advice.RequestHandlerCode;
  */
 public class ServiceException extends RuntimeException{
 
-    private String msg = RequestHandlerCode.DATABASES.getReasonPhrase();
+    private String msg = RequestHandlerCode.DATABASE.getReasonPhrase();
 
-    private int code = RequestHandlerCode.DATABASES.getCode();
+    private int code = RequestHandlerCode.DATABASE.getCode();
 
     public ServiceException(){}
 

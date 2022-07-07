@@ -2,7 +2,7 @@ package com.jiaguo.codegenerategraduation.web.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.jiaguo.codegenerategraduation.web.controller.vo.SysMenuVo;
-import com.jiaguo.codegenerategraduation.web.po.RoleMenu;
+import com.jiaguo.codegenerategraduation.web.entity.RoleMenu;
 
 import java.util.List;
 
@@ -22,4 +22,10 @@ public interface RoleMenuService extends IService<RoleMenu> {
 
 
     public List<SysMenuVo> getMenuList(int roleId);
+
+
+
+
+    Boolean saveRoleMenu(int roleId, List<SysMenuVo> menuList);
+
 }

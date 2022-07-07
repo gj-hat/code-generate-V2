@@ -1,7 +1,7 @@
 package com.jiaguo.codegenerategraduation.web.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.jiaguo.codegenerategraduation.web.po.UserRole;
+import com.jiaguo.codegenerategraduation.web.entity.UserRole;
 
 /**
  * @author ：JiaGuo

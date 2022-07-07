@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.jiaguo.codegenerategraduation.common.http.ReqParams;
 import com.jiaguo.codegenerategraduation.common.http.Result;
 import com.jiaguo.codegenerategraduation.web.controller.vo.SysMenuVo;
-import com.jiaguo.codegenerategraduation.web.po.SysMenu;
+import com.jiaguo.codegenerategraduation.web.entity.SysMenu;
 
 import java.util.List;
 

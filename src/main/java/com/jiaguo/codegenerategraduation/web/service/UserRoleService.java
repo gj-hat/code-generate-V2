@@ -1,8 +1,7 @@
 package com.jiaguo.codegenerategraduation.web.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.jiaguo.codegenerategraduation.web.po.SysUser;
-import com.jiaguo.codegenerategraduation.web.po.UserRole;
+import com.jiaguo.codegenerategraduation.web.entity.UserRole;
 
 /**
  * @author ：JiaGuo

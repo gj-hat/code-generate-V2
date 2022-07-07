@@ -116,6 +116,12 @@ public class Result<T> {
     }
 
 
-
-
+    @Override
+    public String toString() {
+        return "Result{" +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", data=" + data +
+                '}';
+    }
 }

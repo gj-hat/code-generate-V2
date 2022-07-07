@@ -4,8 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.jiaguo.codegenerategraduation.common.http.ReqParams;
 import com.jiaguo.codegenerategraduation.common.http.Result;
 import com.jiaguo.codegenerategraduation.web.controller.vo.SysRoleVo;
-import com.jiaguo.codegenerategraduation.web.po.SysRole;
-import io.swagger.models.auth.In;
+import com.jiaguo.codegenerategraduation.web.entity.SysRole;
 
 import java.util.List;
 

@@ -12,9 +12,9 @@ import com.jiaguo.codegenerategraduation.advice.RequestHandlerCode;
  */
 public class DatabaseException extends RuntimeException{
 
-    private String msg = RequestHandlerCode.DATABASES.getReasonPhrase();
+    private String msg = RequestHandlerCode.DATABASE.getReasonPhrase();
 
-    private int code = RequestHandlerCode.DATABASES.getCode();
+    private int code = RequestHandlerCode.DATABASE.getCode();
 
     public DatabaseException(){}
 

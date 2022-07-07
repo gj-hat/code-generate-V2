@@ -1,9 +1,6 @@
-package com.jiaguo.codegenerategraduation.web.po;
+package com.jiaguo.codegenerategraduation.web.entity;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
@@ -42,20 +39,21 @@ public class SysUser extends Model<SysUser> {
     @TableField("nickname")
     @ApiModelProperty(value = "昵称", name = "nickname", example = "admin")
     private String nickname;
-    @TableField("create_time")
-    @NotBlank(message = "创建时间不能为空")
+    @ApiModelProperty(value = "创建时间", name = "createTime", example = "2020-07-06 10:36:46")
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Date createTime;
-    @TableField("create_by")
-    @NotBlank(message = "创建人不能为空")
+    @TableField(value = "create_by", fill = FieldFill.INSERT)
+    @ApiModelProperty(value = "创建人", name = "createBy", example = "1")
     private String createBy;
-    @TableField("update_time")
-    @NotBlank(message = "更新时间不能为空")
+    @ApiModelProperty(value = "更新时间", name = "updateTime", example = "2020-07-06 10:36:46")
+    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
-    @TableField("update_by")
+    @ApiModelProperty(value = "更新人", name = "updateBy", example = "1")
+    @TableField(value = "update_by", fill = FieldFill.INSERT_UPDATE)
     private String updateBy;
+    @ApiModelProperty(value = "删除标记", name = "delFlag", example = "1")
     @TableField("del_flag")
-    private int delFlag;
-
+    private Integer delFlag;
 
 
 

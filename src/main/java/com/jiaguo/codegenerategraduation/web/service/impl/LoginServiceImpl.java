@@ -4,10 +4,11 @@ import com.jiaguo.codegenerategraduation.common.http.Result;
 import com.jiaguo.codegenerategraduation.config.security.jwtManager.JwtManager;
 import com.jiaguo.codegenerategraduation.config.security.jwtManager.JwtUser;
 import com.jiaguo.codegenerategraduation.util.RedisCache;
-import com.jiaguo.codegenerategraduation.web.po.SysUser;
+import com.jiaguo.codegenerategraduation.web.entity.SysUser;
 import com.jiaguo.codegenerategraduation.web.manager.RequestHolder;
 import com.jiaguo.codegenerategraduation.web.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.RedisConnectionFailureException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -45,10 +46,17 @@ public class LoginServiceImpl implements LoginService {
         String jwt = JwtManager.builderToken(stringObjectMap);
 
         Map<String, String> map = new HashMap<>();
-        map.put("token", jwt);
+        map.put("Authorization", jwt);
 
-        // 把完整的用户信息存入redis中 userid作为key
-        redisCache.setCacheObject("login:" + loginUser.getId(), loginUser);
+        try {
+            // 把完整的用户信息存入redis中 userid作为key
+            redisCache.setCacheObject("login:" + loginUser.getId(), loginUser);
+        } catch (RedisConnectionFailureException e) {
+            throw new RuntimeException("登录失败");
+        }
+
+
+
 
         return Result.success("登录成功", map);
     }

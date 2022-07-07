@@ -4,7 +4,6 @@ import com.jiaguo.codegenerategraduation.common.http.ReqParams;
 import com.jiaguo.codegenerategraduation.common.http.Result;
 import com.jiaguo.codegenerategraduation.web.controller.vo.SysMenuVo;
 
-import com.jiaguo.codegenerategraduation.web.controller.vo.SysUserVo;
 import com.jiaguo.codegenerategraduation.web.service.impl.SysMenuServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -28,7 +27,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/menu")
-@Api(value = "系统资源管理", tags = "系统资源管理  这里只需要查询即可")
+@Api(value = "系统资源管理  这里只需要查询即可", tags = "系统资源管理")
 public class SysMenuController {
 
     @Autowired
@@ -40,14 +39,14 @@ public class SysMenuController {
      * @param params
      * @return
      */
-    @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/list", method = { RequestMethod.POST})
     @ApiOperation(value = "分页查询所有数据", notes = "分页查询所有数据")
     public Result selectAll(ReqParams<SysMenuVo> params) {
         return this.sysMenuService.pageQuery(params);
     }
 
 
-    @RequestMapping(value = "/listByDefault", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/listByDefault", method = { RequestMethod.POST})
     @ApiOperation(value = "废弃: 查询当前登录用户资源", notes = "查询当前登录用户资源 这个留业务层去实现")
     @Deprecated
     public Result selectByLoginUser() {
@@ -66,6 +65,7 @@ public class SysMenuController {
      */
     @RequestMapping(value = "/add", method = {RequestMethod.POST})
     @ApiOperation(value = "废弃: 新增数据", notes = "新增数据  这个业务下一版实现 不用实现这个接口")
+    @Deprecated
     public Result insert(@RequestBody @Valid SysMenuVo sysUserVo, BindingResult result) {
         return Result.fail("这个业务下一版实现");
     }
@@ -91,6 +91,7 @@ public class SysMenuController {
      */
     @ApiOperation(value = "废弃: 删除数据", notes = "删除数据  这个业务下一版实现 不用实现这个接口 ")
     @RequestMapping(value = "/del", method = {RequestMethod.POST})
+    @Deprecated
     public Result delete(@RequestBody List<Long> idList) {
         return Result.fail("这个业务下一版实现");
     }
@@ -102,7 +103,7 @@ public class SysMenuController {
      * @return 单条数据
      */
     @ApiOperation(value = "废弃: 通过主键查询数据", notes = "通过主键查询单条数据  这个业务层实现")
-    @RequestMapping(value = "/ids", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/ids", method = { RequestMethod.POST})
     @Deprecated
     public Result selectByLoginUser(@RequestBody List<Long> idList) {
         return null;

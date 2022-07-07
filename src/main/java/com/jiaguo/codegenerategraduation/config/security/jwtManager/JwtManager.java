@@ -29,9 +29,9 @@ public class JwtManager {
         final Date now = new Date();
         return Jwts.builder()
                 .setId(getUUID())
-                .setIssuer("jwtProperties.getIssuer()")
-                .setSubject("jwtProperties.getSubject()")
-                .setAudience("jwtProperties.getAudience()")
+                .setIssuer(Constants.JWT_ISSUER)
+                .setSubject(Constants.JWT_SUBJECT)
+                .setAudience(Constants.JWT_AUDIENCE)
                 .setNotBefore(now)
                 .setExpiration(expirdateDate())
                 .setIssuedAt(now)

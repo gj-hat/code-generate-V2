@@ -1,5 +1,6 @@
-package com.jiaguo.codegenerategraduation.web.po;
+package com.jiaguo.codegenerategraduation.web.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
@@ -29,21 +30,21 @@ public class UserRole {
     @TableField("role_id")
     @ApiModelProperty(value = "角色id", name = "roleId", example = "1", required = true)
     private int roleId;
-    @ApiModelProperty(value = "创建时间", name = "createTime", example = "2020-06-30 10:56:00", required = true)
-    @TableField("create_time")
+    @ApiModelProperty(value = "创建时间", name = "createTime", example = "2020-07-06 10:36:46")
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
     private Date createTime;
-    @ApiModelProperty(value = "创建人", name = "createUser", example = "1", required = true)
-    @TableField("create_by")
+    @TableField(value = "create_by", fill = FieldFill.INSERT)
+    @ApiModelProperty(value = "创建人", name = "createBy", example = "1")
     private String createBy;
-    @ApiModelProperty(value = "修改时间", name = "updateTime", example = "2020-06-30 10:56:00", required = true)
-    @TableField("update_time")
+    @ApiModelProperty(value = "更新时间", name = "updateTime", example = "2020-07-06 10:36:46")
+    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
-    @ApiModelProperty(value = "修改人", name = "updateUser", example = "1", required = true)
-    @TableField("update_by")
+    @ApiModelProperty(value = "更新人", name = "updateBy", example = "1")
+    @TableField(value = "update_by", fill = FieldFill.INSERT_UPDATE)
     private String updateBy;
-    @ApiModelProperty(value = "菜单状态", name = "menuStatus", example = "1", required = true)
+    @ApiModelProperty(value = "删除标记", name = "delFlag", example = "1")
     @TableField("del_flag")
-    private int delFlag;
+    private Integer delFlag;
 
 
 

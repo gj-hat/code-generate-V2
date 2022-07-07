@@ -5,12 +5,10 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jiaguo.codegenerategraduation.common.exception.DatabaseException;
 import com.jiaguo.codegenerategraduation.web.manager.RequestHolder;
 import com.jiaguo.codegenerategraduation.web.mapper.UserRoleMapper;
-import com.jiaguo.codegenerategraduation.web.po.UserRole;
+import com.jiaguo.codegenerategraduation.web.entity.UserRole;
 import com.jiaguo.codegenerategraduation.web.service.UserRoleService;
-import net.bytebuddy.utility.nullability.AlwaysNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.Date;
 
@@ -55,9 +53,9 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> i
      */
     public Boolean deleteByUserId(Long id) {
         UserRole userRole = new UserRole();
-        userRole.setDelFlag(1)
-                .setUpdateTime(new Date())
-                .setUpdateBy(RequestHolder.getAccountName());
+        userRole.setDelFlag(1);
+//                .setUpdateTime(new Date())
+//                .setUpdateBy(RequestHolder.getAccountName());
 
         return updateData(userRole);
     }
@@ -73,11 +71,11 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> i
         UserRole userRole = new UserRole()
                 .setUserId(userId)
                 .setRoleId(roleId)
-                .setDelFlag(0)
-                .setCreateTime(new Date())
-                .setCreateBy(RequestHolder.getAccountName())
-                .setUpdateTime(new Date())
-                .setUpdateBy(RequestHolder.getAccountName());
+                .setDelFlag(0);
+//                .setCreateTime(new Date())
+//                .setCreateBy(RequestHolder.getAccountName())
+//                .setUpdateTime(new Date())
+//                .setUpdateBy(RequestHolder.getAccountName());
 
         return userRoleMapper.insert(userRole) > 0;
     }
@@ -104,9 +102,9 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> i
     public int updateData(Long id, int roleId) {
 
         return userRoleMapper.update(new UserRole()
-                        .setRoleId(roleId)
-                        .setUpdateTime(new Date())
-                        .setUpdateBy(RequestHolder.getAccountName()),
+                        .setRoleId(roleId),
+//                        .setUpdateTime(new Date())
+//                        .setUpdateBy(RequestHolder.getAccountName()),
                 new QueryWrapper<UserRole>().eq("user_id", id));
 
     }

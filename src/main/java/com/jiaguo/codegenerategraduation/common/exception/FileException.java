@@ -25,6 +25,17 @@ public class FileException extends RuntimeException{
         this.code = code;
     }
 
+    public FileException(int code, String msg) {
+        this.code = code;
+        this.msg = msg;
+    }
+
+    public FileException(String msg) {
+        this.msg = msg;
+    }
+
+
+
     public FileException(String message, int code) {
         super(message);
         this.code = code;

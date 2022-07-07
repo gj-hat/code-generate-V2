@@ -4,15 +4,17 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.jiaguo.codegenerategraduation.web.controller.vo.SysMenuVo;
 import com.jiaguo.codegenerategraduation.web.mapper.RoleMenuMapper;
 import com.jiaguo.codegenerategraduation.web.mapper.SysMenuMapper;
-import com.jiaguo.codegenerategraduation.web.po.RoleMenu;
-import com.jiaguo.codegenerategraduation.web.po.SysMenu;
+import com.jiaguo.codegenerategraduation.web.entity.RoleMenu;
 import com.jiaguo.codegenerategraduation.web.service.RoleMenuService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
 
 /**
  * @author ：JiaGuo
@@ -24,6 +26,7 @@ import java.util.List;
  */
 @Service
 public class RoleMenuServiceImpl extends ServiceImpl<RoleMenuMapper, RoleMenu> implements RoleMenuService {
+    private static final Logger logger = LoggerFactory.getLogger(RoleMenuServiceImpl.class);
 
     @Autowired
     private RoleMenuMapper roleMenuMapper;
@@ -34,17 +37,21 @@ public class RoleMenuServiceImpl extends ServiceImpl<RoleMenuMapper, RoleMenu> i
     @Autowired
     private SysMenuMapper sysMenuMapper;
 
-    /**
-     * 更新角色 权限表
-     * @param roleId
-     * @param menuList
-     * @return
-     */
-    @Override
-    public Boolean updateData(int roleId, List<SysMenuVo> menuList) {
 
-        // TODO JiaGuo 2022/7/1:
-        return null;
+    @Override
+    public Boolean saveRoleMenu(int roleId, List<SysMenuVo> menuList) {
+            for (SysMenuVo menu : menuList) {
+                RoleMenu roleMenu = new RoleMenu();
+                roleMenu.setRoleId(roleId)
+                        .setMenuId(menu.getId())
+//                        .setCreateTime(new Date())
+//                        .setUpdateTime(new Date())
+//                        .setCreateBy(RequestHolder.getAccountName())
+//                        .setUpdateBy(RequestHolder.getAccountName())
+                        .setDelFlag(0);
+                roleMenuMapper.insert(roleMenu);
+            }
+        return true;
     }
 
     /**
@@ -70,6 +77,19 @@ public class RoleMenuServiceImpl extends ServiceImpl<RoleMenuMapper, RoleMenu> i
         return sysMenuVos;
     }
 
+
+    /**
+     * 更新角色 权限表
+     *
+     * @param roleId
+     * @param menuList
+     * @return
+     */
+    @Override
+    public Boolean updateData(int roleId, List<SysMenuVo> menuList) {
+        // TODO JiaGuo 2022/7/1:
+        return null;
+    }
 
 }
 

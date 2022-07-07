@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jiaguo.codegenerategraduation.web.mapper.DatabaseResourcesMapper">
+
+    <select id="pageQuery"
+            parameterType="com.jiaguo.codegenerategraduation.web.controller.vo.DatabaseResourcesVo"
+            resultType="com.jiaguo.codegenerategraduation.web.controller.vo.DatabaseResourcesVo">
+
+        select u.id, u.name, u.remark, u.database_type,u.host, u.port, u.username, u.password ,
+        u.driver_id, dd.name driverName , dd.url driverUrl, u.database_name, u.create_time, u.create_by,u.update_time,u.update_by
+        from database_resources u
+        left join database_driver dd
+        on u.driver_id = dd.id
+        <where>
+            <if test="vo != null">
+                <if test="vo.id != null">
+                    and u.id = #{vo.id}
+                </if>
+                <if test="vo.name != null">
+                    and u.name = #{vo.name}
+                </if>
+                <if test="vo.remark != null">
+                    and u.remark = #{vo.remark}
+                </if>
+                <if test="vo.databaseType != null">
+                    and u.database_type = #{vo.databaseType}
+                </if>
+                <if test="vo.host != null">
+                    and u.host = #{vo.host}
+                </if>
+                <if test="vo.port != null">
+                    and u.port = #{vo.port}
+                </if>
+                <if test="vo.databaseName != null">
+                    and u.database_name = #{vo.databaseName}
+                </if>
+                <if test="vo.createTime != null">
+                    and u.create_time = #{vo.createTime}
+                </if>
+                <if test="vo.createBy != null">
+                    and u.create_by = #{vo.createBy}
+                </if>
+                <if test="vo.updateTime != null">
+                    and u.update_time = #{vo.updateTime}
+                </if>
+                <if test="vo.updateBy != null">
+                    and u.update_by = #{vo.updateBy}
+                </if>
+                and del_flag = 0
+            </if>
+        </where>
+        ORDER BY update_time DESC
+    </select>
+
+
+</mapper>
+
+

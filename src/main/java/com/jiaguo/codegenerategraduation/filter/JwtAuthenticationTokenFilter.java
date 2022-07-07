@@ -7,6 +7,7 @@ import com.jiaguo.codegenerategraduation.util.RedisCache;
 import com.jiaguo.codegenerategraduation.web.manager.RequestHolder;
 import io.jsonwebtoken.Claims;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.RedisConnectionFailureException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -41,7 +42,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         //获取token
         String token = request.getHeader(Constants.REQUEST_HEAD);
         // 没有token
-        if (!StringUtils.hasText(token) || token.equals("") || token.equals("undefined")) {
+        if (!StringUtils.hasText(token) || token.equals(" ") || token.equals("undefined")) {
             //放行
             filterChain.doFilter(request, response);
             return;
@@ -58,9 +59,17 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             e.printStackTrace();
             throw new RuntimeException("token非法");
         }
+
         //从redis中获取用户信息
         String redisKey = "login:" + userid;
-        JwtUser loginUser = redisCache.getCacheObject(redisKey);
+        JwtUser loginUser;
+        try {
+             loginUser = redisCache.getCacheObject(redisKey);
+        } catch (RedisConnectionFailureException e) {
+            throw new RuntimeException("认证失败");
+        }
+
+
         if (Objects.isNull(loginUser)) {
             throw new RuntimeException("用户未登录");
         }

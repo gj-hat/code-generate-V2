@@ -1,6 +1,5 @@
 package com.jiaguo.codegenerategraduation.web.mapper.dto;
 
-import com.jiaguo.codegenerategraduation.web.po.SysUser;
 import io.swagger.annotations.ApiModel;
 import lombok.Data;
 

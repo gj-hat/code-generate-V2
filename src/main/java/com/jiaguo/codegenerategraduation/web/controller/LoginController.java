@@ -1,7 +1,7 @@
 package com.jiaguo.codegenerategraduation.web.controller;
 
 import com.jiaguo.codegenerategraduation.common.http.Result;
-import com.jiaguo.codegenerategraduation.web.po.SysUser;
+import com.jiaguo.codegenerategraduation.web.entity.SysUser;
 import com.jiaguo.codegenerategraduation.web.service.impl.LoginServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

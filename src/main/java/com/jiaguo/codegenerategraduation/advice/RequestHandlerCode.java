@@ -8,7 +8,7 @@ public enum RequestHandlerCode {
     /**
      * ************************************************************************************************************
      * <p>
-     * 租户, 账户
+     * , 账户
      * <p>
      * *************************************************************************************************************
      */
@@ -32,7 +32,7 @@ public enum RequestHandlerCode {
 
     ACCOUNT_TOKEN_EXPIRE(1105, Series.ACCOUNT, "token过期或者失败"),
 
-    ACCOUNT_TENANT_DISABLED(1106, Series.ACCOUNT, "该用户租户已被禁用，如需处理，请联系管理员"),
+    ACCOUNT_TENANT_DISABLED(1106, Series.ACCOUNT, "该用户已被禁用，如需处理，请联系管理员"),
 
 
     /**
@@ -73,13 +73,13 @@ public enum RequestHandlerCode {
      * *************************************************************************************************************
      */
 
-    DATABASES(4000, Series.DATABASE, "数据库错误"),
+    DATABASE(4000, Series.DATABASE, "数据库错误"),
 
-    DATABASES_SQL_PARAMETER_LACK(4001, Series.DATABASE, "SQL参数缺少"),
+    DATABASE_SQL_PARAMETER_LACK(4001, Series.DATABASE, "SQL参数缺少"),
 
-    DATABASES_SQL_ILLEGAL(4002, Series.DATABASE, "SQL语法错误"),
+    DATABASE_SQL_ILLEGAL(4002, Series.DATABASE, "SQL语法错误"),
 
-    DATABASES_SQL_CONNECT_ERROR(4102, Series.DATABASE, "无法获取数据库连接,数据库连接已断开"),
+    DATABASE_SQL_CONNECT_ERROR(4102, Series.DATABASE, "无法获取数据库连接,数据库连接已断开"),
 
 
     /**

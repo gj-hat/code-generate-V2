@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
+import org.springframework.data.redis.RedisConnectionFailureException;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -66,6 +67,9 @@ public class GlobalControllerExceptionAdvice implements ResponseBodyAdvice<Objec
     }
 
 
+
+
+
     @ResponseBody
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public Result<String> MissingServletRequestParameterException(HttpServletRequest request, Exception e) {
@@ -80,6 +84,9 @@ public class GlobalControllerExceptionAdvice implements ResponseBodyAdvice<Objec
         log.error("handleException : ", e);
         return Result.fail("请求参数类型不匹配!");
     }
+
+
+
 
 
     /**
@@ -169,7 +176,7 @@ public class GlobalControllerExceptionAdvice implements ResponseBodyAdvice<Objec
     @ExceptionHandler(CannotCreateTransactionException.class)
     @ResponseBody
     public Result handleCannotCreateTransactionException(HttpServletRequest request, Exception ex) {
-        log.error("Access databases Exception ", ex);
+        log.error("Access database Exception ", ex);
         return Result.fail("数据库连接失败");
     }
 
@@ -256,6 +263,14 @@ public class GlobalControllerExceptionAdvice implements ResponseBodyAdvice<Objec
         return Result.fail(ex.getCode(), ex.getMessage());
     }
 
+    @ExceptionHandler(RedisConnectionFailureException.class)
+    @ResponseBody
+    public Result redisConnectionFailureException(HttpServletRequest request, DatabaseException ex) {
+        log.error("Redis连接异常", ex);
+        return Result.fail(ex.getCode(), ex.getMessage());
+    }
+
+
     /**
      * 自定义文件处理异常
      * @param request
@@ -268,6 +283,7 @@ public class GlobalControllerExceptionAdvice implements ResponseBodyAdvice<Objec
         log.error("文件处理异常", ex);
         return Result.fail(ex.getCode(), ex.getMessage());
     }
+
 
 
     /**

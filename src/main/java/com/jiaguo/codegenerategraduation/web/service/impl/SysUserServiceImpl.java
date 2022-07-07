@@ -8,10 +8,10 @@ import com.jiaguo.codegenerategraduation.common.http.ReqParams;
 import com.jiaguo.codegenerategraduation.common.http.Result;
 import com.jiaguo.codegenerategraduation.web.controller.vo.SysMenuVo;
 import com.jiaguo.codegenerategraduation.web.controller.vo.SysUserVo;
-import com.jiaguo.codegenerategraduation.web.po.SysUser;
+import com.jiaguo.codegenerategraduation.web.entity.SysUser;
 import com.jiaguo.codegenerategraduation.web.manager.RequestHolder;
 import com.jiaguo.codegenerategraduation.web.mapper.SysUserMapper;
-import com.jiaguo.codegenerategraduation.web.po.UserRole;
+import com.jiaguo.codegenerategraduation.web.entity.UserRole;
 import com.jiaguo.codegenerategraduation.web.service.SysUserService;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import org.slf4j.Logger;
@@ -85,10 +85,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         sysUser.setUsername(sysUserVo.getUsername())
                 .setPassword(sysUserVo.getPassword())
                 .setNickname(sysUserVo.getNickname())
-                .setCreateTime(new Date())
-                .setCreateBy(RequestHolder.getAccountName())
-                .setUpdateTime(new Date())
-                .setUpdateBy(RequestHolder.getAccountName())
+//                .setCreateTime(new Date())
+//                .setCreateBy(RequestHolder.getAccountName())
+//                .setUpdateTime(new Date())
+//                .setUpdateBy(RequestHolder.getAccountName())
                 .setDelFlag(0);
 
         this.save(sysUser);
@@ -108,9 +108,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         sysUser.setId(sysUserVo.getId())
                 .setUsername(sysUserVo.getUsername())
                 .setPassword(sysUserVo.getPassword())
-                .setNickname(sysUserVo.getNickname())
-                .setUpdateTime(new Date())
-                .setUpdateBy(RequestHolder.getAccountName());
+                .setNickname(sysUserVo.getNickname());
+//                .setUpdateTime(new Date())
+//                .setUpdateBy(RequestHolder.getAccountName());
         try {
             updateById(sysUser);
             userRoleService.updateData(sysUserVo.getId(), sysUserVo.getRoleId());
@@ -128,8 +128,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         try {
             sysUserMapper.selectList(qw).forEach(sysUser -> {
                 sysUser.setDelFlag(1);
-                sysUser.setUpdateTime(new Date());
-                sysUser.setUpdateBy(RequestHolder.getAccountName());
+//                sysUser.setUpdateTime(new Date());
+//                sysUser.setUpdateBy(RequestHolder.getAccountName());
                 updateById(sysUser);
                 // 根据用户id删除user_role表中的数据
                 userRoleService.deleteByUserId(sysUser.getId());

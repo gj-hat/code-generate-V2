@@ -3,7 +3,7 @@ package com.jiaguo.codegenerategraduation.web.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.jiaguo.codegenerategraduation.web.controller.vo.SysMenuVo;
-import com.jiaguo.codegenerategraduation.web.po.SysMenu;
+import com.jiaguo.codegenerategraduation.web.entity.SysMenu;
 import org.apache.ibatis.annotations.Param;
 
 

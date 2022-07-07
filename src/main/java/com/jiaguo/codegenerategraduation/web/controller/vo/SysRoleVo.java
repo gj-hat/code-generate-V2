@@ -29,5 +29,4 @@ public class SysRoleVo {
     @ApiModelProperty(value = "资源权限集合", name = "menuList", example = "[{},{}]", required = true)
     private List<SysMenuVo> menuList;
 
-
 }

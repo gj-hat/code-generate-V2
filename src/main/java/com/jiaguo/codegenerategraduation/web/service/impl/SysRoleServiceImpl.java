@@ -10,25 +10,21 @@ import com.jiaguo.codegenerategraduation.common.http.ReqParams;
 import com.jiaguo.codegenerategraduation.common.http.Result;
 import com.jiaguo.codegenerategraduation.web.controller.vo.SysMenuVo;
 import com.jiaguo.codegenerategraduation.web.controller.vo.SysRoleVo;
-import com.jiaguo.codegenerategraduation.web.controller.vo.SysRoleVo;
 import com.jiaguo.codegenerategraduation.web.manager.RequestHolder;
 import com.jiaguo.codegenerategraduation.web.mapper.RoleMenuMapper;
 import com.jiaguo.codegenerategraduation.web.mapper.SysRoleMapper;
 import com.jiaguo.codegenerategraduation.web.mapper.UserRoleMapper;
-import com.jiaguo.codegenerategraduation.web.po.RoleMenu;
-import com.jiaguo.codegenerategraduation.web.po.SysRole;
-import com.jiaguo.codegenerategraduation.web.po.UserRole;
+import com.jiaguo.codegenerategraduation.web.entity.RoleMenu;
+import com.jiaguo.codegenerategraduation.web.entity.SysRole;
+import com.jiaguo.codegenerategraduation.web.entity.UserRole;
 import com.jiaguo.codegenerategraduation.web.service.SysRoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author ：JiaGuo
@@ -93,12 +89,8 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
                 int roleId = sysRoleVo.getRoleId();
                 // 根据roleId  查询 该角色的菜单权限
                 List<SysMenuVo> menuList1 = roleMenuService.getMenuList(roleId);
-
                 sysRoleVo.setMenuList(menuList1);
-
             });
-
-
         } catch (DatabaseException e) {
             logger.error("sysRoleMapper.pageQuery 查询失败", e);
             return Result.fail("sysRoleMapper.pageQuery 查询失败");
@@ -116,13 +108,18 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     public Result saveSysRole(SysRoleVo sysRoleVo) {
         SysRole sysRole = new SysRole()
                 .setRoleName(sysRoleVo.getRoleName())
-                .setCreateTime(new Date())
-                .setCreateBy(RequestHolder.getAccountName())
-                .setUpdateTime(new Date())
-                .setUpdateBy(RequestHolder.getAccountName())
+//                .setCreateTime(new Date())
+//                .setCreateBy(RequestHolder.getAccountName())
+//                .setUpdateTime(new Date())
+//                .setUpdateBy(RequestHolder.getAccountName())
                 .setDelFlag(0);
         try {
+            // 新增角色
             this.save(sysRole);
+            // 获取新增角色的id
+            int roleId = sysRole.getRoleId();
+            // 新增角色与菜单的关系
+            Boolean res = roleMenuService.saveRoleMenu(roleId, sysRoleVo.getMenuList());
         } catch (DatabaseException e) {
             logger.error("sysRoleMapper.saveSysRole 新增失败", e);
             return Result.fail("sysRoleMapper.saveSysRole 新增失败");
@@ -140,9 +137,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
     @Override
     public Result updateRole(SysRoleVo sysRoleVo) {
         SysRole sysRole = new SysRole()
-                .setRoleName(sysRoleVo.getRoleName())
-                .setUpdateTime(new Date())
-                .setUpdateBy(RequestHolder.getAccountName());
+                .setRoleName(sysRoleVo.getRoleName());
+//                .setUpdateTime(new Date())
+//                .setUpdateBy(RequestHolder.getAccountName());
 
         this.saveOrUpdate(sysRole);
         // 传入角色id，更新角色与菜单的关联关系
@@ -175,7 +172,6 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleMapper, SysRole> impl
                 // 删除标记为1
                 SysRole sysRole = new SysRole().setDelFlag(1);
                 this.update(sysRole, new UpdateWrapper<SysRole>().eq("role_id", id));
-
                 // 删除角色权限表数据    删除标记为1
                 roleMenuService.update(new UpdateWrapper<RoleMenu>()
                         .eq("role_id", id)

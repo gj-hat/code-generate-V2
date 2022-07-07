@@ -3,7 +3,7 @@ package com.jiaguo.codegenerategraduation.web.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.jiaguo.codegenerategraduation.web.controller.vo.SysRoleVo;
-import com.jiaguo.codegenerategraduation.web.po.SysRole;
+import com.jiaguo.codegenerategraduation.web.entity.SysRole;
 import org.apache.ibatis.annotations.Param;
 
 /**
