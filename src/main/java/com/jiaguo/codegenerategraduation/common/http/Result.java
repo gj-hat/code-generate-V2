@@ -1,6 +1,5 @@
 package com.jiaguo.codegenerategraduation.common.http;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -59,11 +58,6 @@ public class Result<T> {
     }
 
     public static <T> Result<T> success(String message, T data) {
-//        if (data instanceof Page) {
-//            Page p = (Page) data;
-//            PageResult pageResult = new PageResult(p.getTotal(), p.getRecords());
-//            return new Result(DEFAULT_SUCCESS_CODE, message, pageResult);
-//        }
         return new Result(DEFAULT_SUCCESS_CODE, message, data);
     }
 

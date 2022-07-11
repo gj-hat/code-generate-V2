@@ -11,7 +11,7 @@ import java.util.Date;
  * @author ：JiaGuo
  * @emil ：1520047927@qq.com
  * @date ：Created in 2022/7/6 10:51
- * @description：
+ * @description： mybatis 填充器
  * @modified By：
  * @version: 1.0
  */

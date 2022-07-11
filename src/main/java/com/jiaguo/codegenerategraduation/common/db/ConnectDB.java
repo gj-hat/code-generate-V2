@@ -5,7 +5,6 @@ import com.jiaguo.codegenerategraduation.config.InitParameter;
 import com.jiaguo.codegenerategraduation.web.controller.vo.DatabaseResourcesVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -39,6 +38,7 @@ public class ConnectDB {
                 + databaseResourcesVo.getPort()
                 + "/"
                 + databaseResourcesVo.getDatabaseName();
+        // TODO JiaGuo 2022/7/11: 这里需要完善  考虑写入数据库还是枚举类
         String mysqlClassName = "com.mysql.cj.jdbc.Driver";
         String mysqlClassNameOld = "com.mysql.jdbc.Driver";
 

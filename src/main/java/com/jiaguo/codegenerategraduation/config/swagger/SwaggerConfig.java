@@ -1,7 +1,6 @@
 package com.jiaguo.codegenerategraduation.config.swagger;
 
 
-import io.swagger.annotations.ApiOperation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -64,14 +63,12 @@ public class SwaggerConfig {
                 .apiInfo(apiInfo())
                 .select()
                 // 指定要生成api接口的包路径
-//                .apis(RequestHandlerSelectors.basePackage("com.jiaguo.codegenerategraduation"))
+                .apis(RequestHandlerSelectors.basePackage("com.jiaguo.codegenerategraduation.web"))
                 // 扫描所有有注解的api，用这种方式更灵活
-                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
-                // 扫描指定包中的swagger注解 《2》
-                //.apis(RequestHandlerSelectors.basePackage("com.maoyou.project.tool.swagger"))
+//                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
 
                 //使用了 @ApiOperation 注解的方法生成api接口文档
-                //.apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
+//                .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
 
                 .build()

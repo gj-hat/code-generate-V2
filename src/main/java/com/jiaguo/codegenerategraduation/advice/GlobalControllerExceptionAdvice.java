@@ -66,10 +66,6 @@ public class GlobalControllerExceptionAdvice implements ResponseBodyAdvice<Objec
         return Result.fail("系统内部发生异常!");
     }
 
-
-
-
-
     @ResponseBody
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public Result<String> MissingServletRequestParameterException(HttpServletRequest request, Exception e) {
@@ -77,17 +73,12 @@ public class GlobalControllerExceptionAdvice implements ResponseBodyAdvice<Objec
         return Result.fail("请求参数有误!");
     }
 
-
     @ResponseBody
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public Result<String> HttpMessageNotReadableException(HttpServletRequest request, Exception e) {
         log.error("handleException : ", e);
         return Result.fail("请求参数类型不匹配!");
     }
-
-
-
-
 
     /**
      * 数据授权签名异常

@@ -1,6 +1,5 @@
 package com.jiaguo.codegenerategraduation.config.security.handler;
 
-import com.alibaba.fastjson2.JSON;
 import com.jiaguo.codegenerategraduation.common.http.Result;
 import com.jiaguo.codegenerategraduation.common.http.WebResult;
 import org.springframework.http.HttpStatus;
@@ -26,7 +25,6 @@ public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
     @Override
     public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException accessDeniedException) throws IOException, ServletException {
         WebResult.renderString(response, Result.fail(HttpStatus.FORBIDDEN.value(), "没有权限访问该资源"));
-
 
     }
 }

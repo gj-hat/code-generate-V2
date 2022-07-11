@@ -13,6 +13,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
+@Deprecated
 public class DbParam {
 
     String driverUrl;

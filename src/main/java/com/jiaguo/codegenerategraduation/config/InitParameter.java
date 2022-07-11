@@ -1,7 +1,6 @@
 package com.jiaguo.codegenerategraduation.config;
 
 import com.jiaguo.codegenerategraduation.web.mapper.SysParamsMapper;
-import com.jiaguo.codegenerategraduation.web.service.SysParamsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

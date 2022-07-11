@@ -4,6 +4,7 @@ import com.jiaguo.codegenerategraduation.common.http.ReqParams;
 import com.jiaguo.codegenerategraduation.common.http.Result;
 import com.jiaguo.codegenerategraduation.web.controller.vo.DatabaseResourcesVo;
 import com.jiaguo.codegenerategraduation.web.service.DatabaseResourcesService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,6 +22,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/databaseResources")
+@Api(value = "数据源管理", tags = "数据源管理")
 public class DatabaseResourcesController {
     /**
      * 服务对象

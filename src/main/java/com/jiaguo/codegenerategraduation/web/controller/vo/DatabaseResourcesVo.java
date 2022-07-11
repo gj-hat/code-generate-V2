@@ -15,7 +15,7 @@ import java.util.Date;
  */
 @Accessors(chain = true)
 @Data
-@ApiModel(value = "数据库请求实体: 数据源管理", description = "数据源管理(DatabaseResources)")
+@ApiModel(value = "请求实体: 数据源管理", description = "数据源管理(DatabaseResources)")
 public class DatabaseResourcesVo {
 
     @ApiModelProperty(value = "主键", name = "id", example = "1")

@@ -8,7 +8,6 @@ import lombok.experimental.Accessors;
 
 import java.io.Serial;
 import java.util.Date;
-import java.io.Serializable;
 
 /**
  * 数据源管理(DatabaseResources)实体类
@@ -20,9 +19,7 @@ import java.io.Serializable;
 @Accessors(chain = true)
 @Data
 @ApiModel(value = "数据库实体: 数据源管理", description = "数据源管理(DatabaseResources)")
-public class DatabaseResources implements Serializable {
-    @Serial
-    private static final long serialVersionUID = -69486951337918199L;
+public class DatabaseResources{
     @TableId(value = "id", type = IdType.AUTO)
     @ApiModelProperty(value = "主键", name = "id", example = "1")
     private int id;

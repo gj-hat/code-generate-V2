@@ -16,7 +16,7 @@ import java.util.Date;
  * @version: 1.0
  */
 @Data
-@ApiModel(value = "数据库实体: 资源菜单", description = "资源菜单")
+@ApiModel(value = "请求实体: 资源菜单", description = "资源菜单")
 @Accessors(chain = true)
 public class SysMenuVo {
 

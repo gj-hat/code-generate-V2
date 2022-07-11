@@ -1,7 +1,6 @@
 package com.jiaguo.codegenerategraduation.web.entity;
 
 import com.baomidou.mybatisplus.annotation.*;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import io.swagger.annotations.ApiModel;
@@ -22,8 +21,8 @@ import java.util.Date;
 @Data
 @Accessors(chain = true)
 @TableName("sys_user")
-@ApiModel(value = "数据库实体: 用户表", description = "用户表")
-public class SysUser extends Model<SysUser> {
+@ApiModel(value = "数据库实体: 系统用户", description = "系统用户")
+public class SysUser {
 
     @TableId(value = "id", type = IdType.ASSIGN_ID)
     @ApiModelProperty(value = "主键id", name = "id", example = "1")
@@ -54,10 +53,6 @@ public class SysUser extends Model<SysUser> {
     @ApiModelProperty(value = "删除标记", name = "delFlag", example = "1")
     @TableField("del_flag")
     private Integer delFlag;
-
-
-
-
 }
 
 

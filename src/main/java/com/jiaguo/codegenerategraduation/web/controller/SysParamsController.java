@@ -9,6 +9,7 @@ import com.jiaguo.codegenerategraduation.common.http.ReqParams;
 import com.jiaguo.codegenerategraduation.common.http.Result;
 import com.jiaguo.codegenerategraduation.web.controller.vo.SysParamsVo;
 import com.jiaguo.codegenerategraduation.web.service.SysParamsService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,6 +24,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/sysParams")
+@Api(value = "系统参数(SysParams)表控制层", tags = "系统参数(SysParams)表控制层")
 public class SysParamsController  {
     /**
      * 服务对象

@@ -16,9 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 /**
@@ -80,7 +78,7 @@ public class SysUserController {
     @Deprecated
     public Result selectOne(RequestBody id) {
         //  JiaGuo 2022/6/29:  这个业务暂时不用 已打废弃标记
-        return Result.success(this.sysUserService.getById((Serializable) id));
+        return Result.success("this.sysUserService.getById(() id)");
     }
 
 
